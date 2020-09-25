@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class='container' style='margin-top:10px;'>
+    <div class='row'>
+        <div style='display: inline; width:400px; margin-right:30px; margin-left:30px'>
+            <h3></h3>
+            <a href="{% url 'movies:list' %}">뒤로</a>
+            <!--<p>누적 관객수 : {{movie.audience}}</p>-->
+            <p><img src="{{movie.poster_url}}" style='height:400px; width:400px;'></p>
+        </div>
+        <div style='display: inline; width:650px'>
+            <h4>영화소개</h4><br><br>
+            <p>{{movie.description}}</p>
+            <hr>
+            <h5>감독</h5>
+            {% for director in movie.directors.all %}
+                <p><a href="{% url 'movies:directordetail' director.id %}">{{director}}</a></p>
+            {% endfor %}
+            <hr>
+            <h5>출연배우</h5>
+            {% for actor in movie.actors.all %}
+                <p><a href="{% url 'movies:actordetail' actor.id %}">{{actor}}</a></p>
+            {% endfor %}
+        </div>
+    </div>
+    <hr>    
+    {% if user in movie.like_users.all %}
+        <a href="{% url 'movies:like' movie.pk %}">좋아요 취소</a>
+    {% else %}
+        <a href="{% url 'movies:like' movie.pk %}">좋아요</a>
+    {% endif %}
+    {{movie.like_count}}명
+    
+    <p>평점 등록</p>    
+    {% if user.is_authenticated %}
+        <form method="POST" action="{% url 'movies:score_create' movie.pk%}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="평점 등록">
+        </form>
+    {% else %}
+        <p>로그인을 하셔야만 평점 등록가능합니다. <a href="{% url 'accounts:login' %}">로그인 하기</a></p>
+    {% endif %}
+    
+    {% for score in movie.score_set.all %}
+        <p><a href="{% url 'accounts:detail' user.pk %}">{{ score.user.username }}</a> : {{ score.value }}점</p>
+        <p>{{ score.content }}</p>
+    {% if user == score.user %}
+        <form action="{% url 'movies:score_delete' movie.pk score.pk %}" method="POST" style="display: inline">
+            {% csrf_token %}
+            <input type="submit" value="삭제">
+        </form>
+    {% endif %}
+    <hr>
+    {% endfor %}
+</div>
+{% endblock %}

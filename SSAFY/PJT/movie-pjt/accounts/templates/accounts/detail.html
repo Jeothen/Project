@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <p><b>user id</b> : <b>{{ user_info.username }}</b></p>
+    <p><b>following</b> : <b>{{ user_info.followings.all.count }}</b></p>
+    <p><b>follower</b>: <b>{{ user_info.followers.all.count }}</b></p>
+    {% for post in user_info.post_set.all %}
+        <h3>content : {{post.content}}</h3>
+    {% endfor %}
+    
+    {% if user != user_info %}
+        {% if user in user_info.followers.all %}
+            <a href="{% url 'accounts:follow' user_info.pk %}"><h2>unfollowing</h2></a>
+        {% else %}
+            <a href="{% url 'accounts:follow' user_info.pk %}"><h2>following</h2></a>
+        {% endif %}
+    {% endif %}
+    
+    <p>팔로워 목록</p>
+    {% for user in user_info.followers.all %}
+        <a href="{% url 'accounts:detail' user.pk %}" >{{user}}</a>
+    {% endfor %}
+    <p>팔로잉 목록</p>
+    {% for user in user_info.followings.all %}
+        <a href="{% url 'accounts:detail' user.pk %}">{{user}}</a>
+    {% endfor %}
+
+<hr>
+<p>내가 작성한 리뷰 목록</p>
+{% for score in user_info.score_set.all %}
+    <p>{{ score.movie.title }} </p>
+    <p>{{ score.content }}</p>
+    <p>{{ score.value }}</p>
+    <p>====================</p>
+{% endfor %}
+<br>
+<p>내 친구가 좋아하는 영화</p>
+{% for user_follow in followings %}
+    <p>{{ user_follow.score_set_value_order.0.movie.title }}</p>
+    <p>{{ user_follow.score_set_value_order.0.value }}점</p>
+{% endfor %}
+
+<!--<p>친구가 관람한 영화 목록</p>-->
+<!--{% for user_follow in user_info.followings.all %}-->
+<!--    {% for lists in user_follow.score_set.all %}-->
+<!--        <p><a href="{% url 'accounts:detail' user.pk %}">{{lists.user}}</a> : {{lists.movie.title}} / {{lists.value}} 점</p>-->
+<!--    {% endfor %}-->
+<!--{% endfor %}-->
+
+<!--<hr>-->
+    
+<!--<p>친구의 추천 영화</p>-->
+<!--{% for user_follow in followings %}-->
+<!--    {% for lists in user_follow.score_set.all %}-->
+<!--        {% if lists.value == user_follow.max_value %}-->
+<!--            <p><a href="{% url 'accounts:detail' user.pk %}">{{lists.user}}</a>  님이 {{lists.movie.title}}을  {{lists.value}}점으로 평가했습니다.</p>-->
+<!--        {% endif %}-->
+<!--    {% endfor %}-->
+<!--{% endfor %}-->
+
+
+{% endblock %}
+

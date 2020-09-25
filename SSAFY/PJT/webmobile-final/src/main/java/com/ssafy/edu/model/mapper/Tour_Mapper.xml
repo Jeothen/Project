@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.edu.model.mapper.TourMapper">
+	
+	
+	<!-- //전체 관광정보 반환(범위?) -->
+	<select id="getTourInfoList" parameterType="PagingVo" resultType="TourInfoVo">
+		SELECT contentId,contentTypeId,address,title,tel FROM place
+		LIMIT #{startList}, #{listSize}
+	</select>
+	<!-- //현재위치, 반경에 따른 관광정보 반환+정렬 -->
+<select id="getTourInfoByHere" resultType="TourInfoVo" parameterType="java.lang.Double">
+<![CDATA[SELECT contentId,contentTypeId,mapx,mapy,overview,tel,address,title,zipcode,image,homepage,areacode,sigungucode,
+	(6371*acos(cos(radians(#{mapy}))*cos(radians(mapY))*cos(radians(mapX)
+	-radians(#{mapx}))+sin(radians(#{mapy}))*sin(radians(mapY))))
+	AS distance
+	FROM place
+	HAVING distance <= #{distance}
+	ORDER BY distance 
+]]>
+	</select>
+<!-- 	//현재위치, 반경에 따른 관광정보 반환(이용가능)+정렬
+	List<TourInfoVo> getAvailableTourInfoByHere(int mapx,int mapy,int distance);
+	//현재위치, 반경에 따른 관광정보 반환(이용 불가능)+정렬
+	List<TourInfoVo> getUnAvailableTourInfoByHere(int mapx,int mapy,int distance); -->
+	<select id="getTourInfoByCId" resultType="TourInfoVo" parameterType="java.lang.Integer">
+	SELECT contentId,contentTypeId,mapx,mapy,overview,tel,address,title,zipcode,image,homepage,areacode,sigungucode FROM place WHERE contentid=#{contentId}
+	</select>
+	
+	<select id="getTourInfoByLocation" resultType="TourInfoVo" parameterType="java.lang.Integer">
+		<if test="sigunguCode==-1">
+			SELECT contentId,contentTypeId,mapx,mapy,overview,tel,address,title,zipcode,image,homepage,areacode,sigungucode FROM place WHERE areacode=#{areaCode}
+		</if>
+		<if test="sigunguCode!=-1">
+			SELECT contentId,contentTypeId,mapx,mapy,overview,tel,address,title,zipcode,image,homepage,areacode,sigungucode FROM place WHERE areacode=#{areaCode} and sigunguCode=#{sigunguCode}
+		</if>
+	</select>
+	
+	
+	<select id="getDetailCourseByCId" resultType="DetailCourse" parameterType="java.lang.Integer">
+	SELECT c.contentid,s.accomcount,s.chkbabycarriage,s.chkcreditcard,s.chkpet,s.parking,s.infocenter,
+	s.restdate,c.distance,c.taketime FROM samething s LEFT JOIN course c ON s.place_contentid=c.contentid 
+	WHERE s.place_contentid=#{contentId}
+	</select>
+
+	<select id="getDetailCulturalByCId" resultType="DetailCultural" parameterType="java.lang.Integer">
+	SELECT c.contentid,s.accomcount,s.chkbabycarriage,s.chkcreditcard,s.chkpet,s.parking,s.infocenter,
+	s.restdate,c.parkingfee,c.usefee,c.usetimeculture 
+	FROM samething s LEFT JOIN cultural c ON s.place_contentid=c.contentid 
+	WHERE s.place_contentid=#{contentId}
+	</select>
+
+	<select id="getDetailFestivalByCId" resultType="DetailFestival" parameterType="java.lang.Integer">
+	SELECT c.contentid,s.accomcount,s.chkbabycarriage,s.chkcreditcard,s.chkpet,s.parking,s.infocenter,
+	s.restdate,c.agelimit,c.bookingplace,c.discountInfoFestival,c.eventEndDate,c.eventPlace,c.eventStartDate,
+	c.placeInfo,c.playTime,c.program,c.sponsor1,c.sponsor2,c.sponsor1tel,c.sponsor2tel,c.subevent,
+	c.usetimeFestival,c.spendTimeFestival FROM samething s 
+	LEFT JOIN festival c ON s.place_contentid=c.contentid WHERE s.place_contentid=#{contentId}
+	</select>
+
+	<select id="getDetailLeportsByCId" resultType="DetailLeports" parameterType="java.lang.Integer">
+	SELECT c.contentid,s.accomcount,s.chkbabycarriage,s.chkcreditcard,s.chkpet,s.parking,
+	s.infocenter,s.restdate,c.openPeriod,c.parkingFeeLeports,c.reservation,c.useFeeLeports,c.useTimeLeports
+	 FROM samething s LEFT JOIN Leports c ON s.place_contentid=c.contentid WHERE s.place_contentid=#{contentId}
+	</select>
+	
+	<select id="getDetailLodgmentByCId" resultType="DetailLodgment" parameterType="java.lang.Integer">
+	SELECT c.contentid,s.accomcount,s.chkbabycarriage,s.chkcreditcard,s.chkpet,s.parking,
+	s.infocenter,s.restdate,c.barbecue,c.campfire,c.checkinTime,c.checkoutTime,c.chkcooking,
+	c.foodPlace,c.pickUp,c.publicBath,c.reservationLodgin,c.reservationUrl,
+	c.roomCount,c.roomType,c.subfacility 
+	FROM samething s LEFT JOIN Lodgment c ON s.place_contentid=c.contentid WHERE s.place_contentid=#{contentId}
+	
+	</select>
+	
+	<select id="getDetailRestaurantByCId" resultType="DetailRestaurant" parameterType="java.lang.Integer">
+	SELECT c.contentid,s.accomcount,s.chkbabycarriage,s.chkcreditcard,s.chkpet,s.parking,
+	s.infocenter,s.restdate,c.firstMenu,c.kidsFacility,c.openTimeFood,c.packing,c.reservationFood,
+	c.smoking,c.treatMenu FROM samething s 
+	LEFT JOIN Restaurant c ON s.place_contentid=c.contentid WHERE s.place_contentid=#{contentId}
+	
+	</select>
+	
+	<select id="getDetailShoppingByCId" resultType="DetailShopping" parameterType="java.lang.Integer">
+	SELECT c.contentid,s.accomcount,s.chkbabycarriage,s.chkcreditcard,s.chkpet,s.parking,
+	s.infocenter,s.restdate,c.openTime,c.saleItem,c.shopGuide FROM samething s LEFT JOIN Shopping c 
+	ON s.place_contentid=c.contentid WHERE s.place_contentid=#{contentId}
+	</select>
+	
+	<select id="getDetailTourPlaceByCId" resultType="DetailTourPlace" parameterType="java.lang.Integer">
+	SELECT c.contentid,s.accomcount,s.chkbabycarriage,s.chkcreditcard,s.chkpet,s.parking,
+	s.infocenter,s.restdate,c.expAgeRange,c.expGuide,c.useTime FROM samething s LEFT JOIN TourPlace c 
+	ON s.place_contentid=c.contentid WHERE s.place_contentid=#{contentId}
+	</select>
+	
+	<!-- //관광정보 입력 -->
+	<insert id="insertDetailCourse" parameterType="java.util.HashMap">
+	INSERT INTO place(contentId,contentTypeId,mapx,mapy,overview,tel,address,title,
+	zipcode,image,homepage,areacode,sigungucode) VALUES (#{contentId},#{contentTypeId}
+	,#{mapx},#{mapy},#{overview},#{tel},#{address},#{title},#{zipcode},#{image},#{homepage},#{areacode},#{sigungucode});
+
+	INSERT INTO samething(place_contentid,accomcount,chkbabycarriage,chkcreditcard,chkpet
+	,parking,infocenter,restdate) VALUES (#{contentId},#{accomcount},#{chkbabycarriage},
+	#{chkcreditcard},#{chkpet},#{parking},#{infocenter},#{restdate});
+	
+	INSERT INTO course(contentid,distance,taketime) VALUES (#{contentId},#{distance},#{taketime});
+	
+	</insert>
+	
+	<insert id="insertDetailCultural" parameterType="java.util.HashMap">
+	INSERT INTO place(contentId,contentTypeId,mapx,mapy,overview,tel,address,title,
+	zipcode,image,homepage,areacode,sigungucode) VALUES (#{contentId},#{contentTypeId}
+	,#{mapx},#{mapy},#{overview},#{tel},#{address},#{title},#{zipcode},#{image},#{homepage},#{areacode},#{sigungucode});
+
+	INSERT INTO samething(place_contentid,accomcount,chkbabycarriage,chkcreditcard,chkpet
+	,parking,infocenter,restdate) VALUES (#{contentId},#{accomcount},#{chkbabycarriage},
+	#{chkcreditcard},#{chkpet},#{parking},#{infocenter},#{restdate});
+	
+	INSERT INTO cultural(contentid,parkingfee,usefee,usetimeculture) VALUES (#{contentId},#{parkingFee},#{useFee},#{useTimeCulture});
+	
+	</insert>
+	<insert id="insertDetailFestival" parameterType="java.util.HashMap">
+	INSERT INTO place(contentId,contentTypeId,mapx,mapy,overview,tel,address,title,
+	zipcode,image,homepage,areacode,sigungucode) VALUES (#{contentId},#{contentTypeId}
+	,#{mapx},#{mapy},#{overview},#{tel},#{address},#{title},#{zipcode},#{image},#{homepage},#{areacode},#{sigungucode});
+
+	INSERT INTO samething(place_contentid,accomcount,chkbabycarriage,chkcreditcard,chkpet
+	,parking,infocenter,restdate) VALUES (#{contentId},#{accomcount},#{chkbabycarriage},
+	#{chkcreditcard},#{chkpet},#{parking},#{infocenter},#{restdate});
+	
+	INSERT INTO Festival(contentid,agelimit,bookingplace,discountInfoFestival,eventEndDate,eventPlace,eventStartDate,placeInfo,
+	playTime,program,sponsor1,sponsor2,sponsor1tel,sponsor2tel,subevent,usetimeFestival,spendTimeFestival) VALUES 
+	(#{contentId},#{agelimit},#{bookingPlace},#{discountInfoFestival},#{eventEndDate},
+			#{eventPlace},#{eventStartDate},#{placeInfo},#{playTime},#{program},
+			#{sponsor1},#{sponsor2},#{sponsor1tel},#{sponsor2tel},#{subevent},
+			#{usetimeFestival},#{spendTimeFestival});
+	</insert>
+	<insert id="insertDetailLeports" parameterType="java.util.HashMap">
+	INSERT INTO place(contentId,contentTypeId,mapx,mapy,overview,tel,address,title,
+	zipcode,image,homepage,areacode,sigungucode) VALUES (#{contentId},#{contentTypeId}
+	,#{mapx},#{mapy},#{overview},#{tel},#{address},#{title},#{zipcode},#{image},#{homepage},#{areacode},#{sigungucode});
+
+	INSERT INTO samething(place_contentid,accomcount,chkbabycarriage,chkcreditcard,chkpet
+	,parking,infocenter,restdate) VALUES (#{contentId},#{accomcount},#{chkbabycarriage},
+	#{chkcreditcard},#{chkpet},#{parking},#{infocenter},#{restdate});
+	
+	INSERT INTO Leports(contentid,openPeriod,parkingFeeLeports,reservation,useFeeLeports,useTimeLeports) VALUES 
+	(#{contentId},#{openPeriod},#{parkingFeeLeports},#{reservation},#{useFeeLeports},
+			#{useTimeLeports});	
+	</insert>
+	
+	<insert id="insertDetailLodgment" parameterType="java.util.HashMap">
+	INSERT INTO place(contentId,contentTypeId,mapx,mapy,overview,tel,address,title,
+	zipcode,image,homepage,areacode,sigungucode) VALUES (#{contentId},#{contentTypeId}
+	,#{mapx},#{mapy},#{overview},#{tel},#{address},#{title},#{zipcode},#{image},#{homepage},#{areacode},#{sigungucode});
+
+	INSERT INTO samething(place_contentid,accomcount,chkbabycarriage,chkcreditcard,chkpet
+	,parking,infocenter,restdate) VALUES (#{contentId},#{accomcount},#{chkbabycarriage},
+	#{chkcreditcard},#{chkpet},#{parking},#{infocenter},#{restdate});
+	
+	INSERT INTO lodgment(contentid,barbecue,campfire,checkinTime,checkoutTime,chkcooking,foodPlace,pickUp,publicBath,reservationLodgin,
+	reservationUrl,roomCount,roomType,subfacility) VALUES (#{contentId},#{barbecue},#{campfire},#{checkinTime},#{checkoutTime},#{chkcooking},
+			#{foodPlace},#{pickUp},#{publicBath},#{reservationLodgin},#{reservationUrl},
+			#{roomCount},#{roomType},#{subfacility});
+	</insert>
+	<insert id="insertDetailRestaurant" parameterType="java.util.HashMap">
+	INSERT INTO place(contentId,contentTypeId,mapx,mapy,overview,tel,address,title,
+	zipcode,image,homepage,areacode,sigungucode) VALUES (#{contentId},#{contentTypeId}
+	,#{mapx},#{mapy},#{overview},#{tel},#{address},#{title},#{zipcode},#{image},#{homepage},#{areacode},#{sigungucode});
+
+	INSERT INTO samething(place_contentid,accomcount,chkbabycarriage,chkcreditcard,chkpet
+	,parking,infocenter,restdate) VALUES (#{contentId},#{accomcount},#{chkbabycarriage},
+	#{chkcreditcard},#{chkpet},#{parking},#{infocenter},#{restdate});
+	
+	INSERT INTO Restaurant(contentid,firstMenu,kidsFacility,openTimeFood,packing,reservationFood,smoking,treatMenu) VALUES 
+	(#{contentId},#{firstMenu},#{kidsFacility},#{openTimeFood},#{packing},
+			#{reservationFood},#{smoking},#{treatMenu});
+	</insert>
+	<insert id="insertDetailShopping" parameterType="java.util.HashMap">
+	INSERT INTO place(contentId,contentTypeId,mapx,mapy,overview,tel,address,title,
+	zipcode,image,homepage,areacode,sigungucode) VALUES (#{contentId},#{contentTypeId}
+	,#{mapx},#{mapy},#{overview},#{tel},#{address},#{title},#{zipcode},#{image},#{homepage},#{areacode},#{sigungucode});
+
+	INSERT INTO samething(place_contentid,accomcount,chkbabycarriage,chkcreditcard,chkpet
+	,parking,infocenter,restdate) VALUES (#{contentId},#{accomcount},#{chkbabycarriage},
+	#{chkcreditcard},#{chkpet},#{parking},#{infocenter},#{restdate});
+	
+	INSERT INTO Shopping(contentid,openTime,saleItem,shopGuide) VALUES (#{contentId},#{openTime},#{saleItem},#{shopGuide});	
+	</insert>
+	<insert id="insertDetailTourPlace" parameterType="java.util.HashMap">
+	INSERT INTO place(contentId,contentTypeId,mapx,mapy,overview,tel,address,title,
+	zipcode,image,homepage,areacode,sigungucode) VALUES (#{contentId},#{contentTypeId}
+	,#{mapx},#{mapy},#{overview},#{tel},#{address},#{title},#{zipcode},#{image},#{homepage},#{areacode},#{sigungucode});
+
+	INSERT INTO samething(place_contentid,accomcount,chkbabycarriage,chkcreditcard,chkpet
+	,parking,infocenter,restdate) VALUES (#{contentId},#{accomcount},#{chkbabycarriage},
+	#{chkcreditcard},#{chkpet},#{parking},#{infocenter},#{restdate});
+	
+	INSERT INTO TourPlace(contentid,expAgeRange,expGuide,useTime) VALUES (#{contentId},#{expAgeRange},#{expGuide},#{useTime});
+	</insert>
+	
+	<update id="updateDetailCourse" parameterType="java.util.HashMap">
+	UPDATE place
+	SET contentTypeId=#{contentTypeId},mapx=#{mapx},mapy=#{mapy},overview=#{overview},tel=#{tel},address=#{address},title=#{title},zipcode=#{zipcode},
+	image=#{image},homepage=#{homepage},areacode=#{areacode},sigungucode=#{sigungucode}
+	WHERE contentId=#{contentId};
+	
+	UPDATE samething
+	SET 
+	accomcount=#{accomcount},chkbabycarriage=#{chkbabycarriage},chkcreditcard=#{chkcreditcard},chkpet=#{chkpet},
+	parking=#{parking},infocenter=#{infocenter},restdate=#{restdate}
+	WHERE place_contentid=#{contentId};
+	
+	UPDATE course
+	SET 
+	distance=#{distance},taketime=#{taketime}
+	WHERE contentid=#{contentId}
+	
+	</update>
+	<update id="updateDetailCultural" parameterType="java.util.HashMap">
+	UPDATE place
+	SET contentTypeId=#{contentTypeId},mapx=#{mapx},mapy=#{mapy},overview=#{overview},tel=#{tel},address=#{address},title=#{title},zipcode=#{zipcode},
+	image=#{image},homepage=#{homepage},areacode=#{areacode},sigungucode=#{sigungucode}
+	WHERE contentId=#{contentId};
+	
+	UPDATE samething
+	SET 
+	accomcount=#{accomcount},chkbabycarriage=#{chkbabycarriage},chkcreditcard=#{chkcreditcard},chkpet=#{chkpet},
+	parking=#{parking},infocenter=#{infocenter},restdate=#{restdate}
+	WHERE place_contentid=#{contentId};
+	
+	UPDATE Cultural
+	SET 
+	parkingfee=#{parkingFee},usefee=#{useFee},usetimeculture=#{useTimeCulture}
+	WHERE contentid=#{contentId};
+	</update>
+	<update id="updateDetailFestival" parameterType="java.util.HashMap">
+		UPDATE place
+	SET contentTypeId=#{contentTypeId},mapx=#{mapx},mapy=#{mapy},overview=#{overview},tel=#{tel},address=#{address},title=#{title},zipcode=#{zipcode},
+	image=#{image},homepage=#{homepage},areacode=#{areacode},sigungucode=#{sigungucode}
+	WHERE contentId=#{contentId};
+	
+	UPDATE samething
+	SET 
+	accomcount=#{accomcount},chkbabycarriage=#{chkbabycarriage},chkcreditcard=#{chkcreditcard},chkpet=#{chkpet},
+	parking=#{parking},infocenter=#{infocenter},restdate=#{restdate}
+	WHERE place_contentid=#{contentId};
+	
+	UPDATE Festival
+	SET 
+	agelimit=#{agelimit},bookingplace=#{bookingPlace},discountInfoFestival=#{discountInfoFestival},eventEndDate=#{eventEndDate},
+	eventPlace=#{eventPlace},eventStartDate=#{eventStartDate},placeInfo=#{placeInfo},playTime=#{playTime},program=#{program},
+	sponsor1=#{sponsor1},sponsor2=#{sponsor2},sponsor1tel=#{sponsor1tel},sponsor2tel=#{sponsor2tel},subevent=#{subevent},
+	usetimeFestival=#{usetimeFestival},spendTimeFestival=#{spendTimeFestival} 
+	WHERE contentid=#{contentId};
+	</update>
+	<update id="updateDetailLeports" parameterType="java.util.HashMap">
+	UPDATE place
+	SET contentTypeId=#{contentTypeId},mapx=#{mapx},mapy=#{mapy},overview=#{overview},tel=#{tel},address=#{address},title=#{title},zipcode=#{zipcode},
+	image=#{image},homepage=#{homepage},areacode=#{areacode},sigungucode=#{sigungucode}
+	WHERE contentId=#{contentId};
+	
+	UPDATE samething
+	SET 
+	accomcount=#{accomcount},chkbabycarriage=#{chkbabycarriage},chkcreditcard=#{chkcreditcard},chkpet=#{chkpet},
+	parking=#{parking},infocenter=#{infocenter},restdate=#{restdate}
+	WHERE place_contentid=#{contentId};
+	
+	UPDATE Leports
+	SET 
+	openPeriod=#{openPeriod},parkingFeeLeports=#{parkingFeeLeports},reservation=#{reservation},
+	useFeeLeports=#{useFeeLeports},useTimeLeports=#{useTimeLeports}
+	WHERE contentid=#{contentId};
+	
+	</update>
+	<update id="updateDetailLodgment" parameterType="java.util.HashMap">
+		UPDATE place
+	SET contentTypeId=#{contentTypeId},mapx=#{mapx},mapy=#{mapy},overview=#{overview},tel=#{tel},address=#{address},title=#{title},zipcode=#{zipcode},
+	image=#{image},homepage=#{homepage},areacode=#{areacode},sigungucode=#{sigungucode}
+	WHERE contentId=#{contentId};
+	
+	UPDATE samething
+	SET 
+	accomcount=#{accomcount},chkbabycarriage=#{chkbabycarriage},chkcreditcard=#{chkcreditcard},chkpet=#{chkpet},
+	parking=#{parking},infocenter=#{infocenter},restdate=#{restdate}
+	WHERE place_contentid=#{contentId};
+	
+	UPDATE lodgment
+	SET 
+	barbecue=#{barbecue},campfire=#{campfire},checkinTime=#{checkinTime},checkoutTime=#{checkoutTime},chkcooking=#{chkcooking},
+	foodPlace=#{foodPlace},pickUp=#{pickUp},publicBath=#{publicBath},reservationLodgin=#{reservationLodgin},reservationUrl=#{reservationUrl},
+	roomCount=#{roomCount},roomType=#{roomType},subfacility=#{subfacility}
+	WHERE contentid=#{contentId};
+	
+	</update>
+	<update id="updateDetailRestaurant" parameterType="java.util.HashMap">
+	UPDATE place
+	SET contentTypeId=#{contentTypeId},mapx=#{mapx},mapy=#{mapy},overview=#{overview},tel=#{tel},address=#{address},title=#{title},zipcode=#{zipcode},
+	image=#{image},homepage=#{homepage},areacode=#{areacode},sigungucode=#{sigungucode}
+	WHERE contentId=#{contentId};
+	
+	UPDATE samething
+	SET 
+	accomcount=#{accomcount},chkbabycarriage=#{chkbabycarriage},chkcreditcard=#{chkcreditcard},chkpet=#{chkpet},
+	parking=#{parking},infocenter=#{infocenter},restdate=#{restdate}
+	WHERE place_contentid=#{contentId};
+	
+	UPDATE Restaurant
+	SET 
+	firstMenu=#{firstMenu},kidsFacility=#{kidsFacility},openTimeFood=#{openTimeFood},packing=#{packing},
+	reservationFood=#{reservationFood},smoking=#{smoking},treatMenu=#{treatMenu}
+	WHERE contentid=#{contentId};
+	
+	</update>
+	<update id="updateDetailShopping" parameterType="java.util.HashMap">
+	UPDATE place
+	SET contentTypeId=#{contentTypeId},mapx=#{mapx},mapy=#{mapy},overview=#{overview},tel=#{tel},address=#{address},title=#{title},zipcode=#{zipcode},
+	image=#{image},homepage=#{homepage},areacode=#{areacode},sigungucode=#{sigungucode}
+	WHERE contentId=#{contentId};
+	
+	UPDATE samething
+	SET 
+	accomcount=#{accomcount},chkbabycarriage=#{chkbabycarriage},chkcreditcard=#{chkcreditcard},chkpet=#{chkpet},
+	parking=#{parking},infocenter=#{infocenter},restdate=#{restdate}
+	WHERE place_contentid=#{contentId};
+	
+	UPDATE shopping
+	SET 
+	openTime=#{openTime},saleItem=#{saleItem},shopGuide=#{shopGuide}
+	WHERE contentid=#{contentId};
+	
+	</update>
+	<update id="updateDetailTourPlace" parameterType="java.util.HashMap">
+	UPDATE place
+	SET contentTypeId=#{contentTypeId},mapx=#{mapx},mapy=#{mapy},overview=#{overview},tel=#{tel},address=#{address},title=#{title},zipcode=#{zipcode},
+	image=#{image},homepage=#{homepage},areacode=#{areacode},sigungucode=#{sigungucode}
+	WHERE contentId=#{contentId};
+	
+	UPDATE samething
+	SET 
+	accomcount=#{accomcount},chkbabycarriage=#{chkbabycarriage},chkcreditcard=#{chkcreditcard},chkpet=#{chkpet},
+	parking=#{parking},infocenter=#{infocenter},restdate=#{restdate}
+	WHERE place_contentid=#{contentId};
+	
+	UPDATE tourplace
+	SET 
+	expAgeRange=#{expAgeRange},expGuide=#{expGuide},useTime=#{useTime}
+	WHERE contentid=#{contentId};	
+	</update>
+	
+	<!-- //지역 정보 반환 -->
+	<delete id="deleteTourInfo" parameterType="java.lang.Integer">
+	DELETE FROM place where contentid=#{contentId}
+	</delete>
+
+	<select id="getArea" resultType="AreaVo">
+		SELECT name,areanum FROM areacode
+	</select>
+	<select id="getSigungu" resultType="SigunguVo">
+		SELECT sigungucode,name,areacode_areacode areacode FROM sigungucode where areacode_areacode=#{areanum}
+	</select>
+
+	<select id="getContentType" resultType="ContentTypeVo">
+		SELECT contenttypeid,name FROM type
+	</select>
+	<select id="getContentId" resultType="Integer">
+		SELECT contentid from place
+		order by contentid desc
+		limit 0,1
+	</select>
+	<select id="getTourListCnt" resultType="Integer">
+		select count(*) as listCnt
+		from place
+	</select>
+	<select id="findContentTypeByName" parameterType="String" resultType="Integer">
+		select contenttypeid from type
+		where name like contcat('%',#{keyword},'%')
+	</select>
+	<select id="getSearchTourCnt" parameterType="HashMap" resultType="Integer">
+		select count(*) as listCnt
+		from place
+		<if test="searchoption == 'CONTENTID'">
+			WHERE contentid like concat('%',#{keyword},'%')
+		</if>
+		<if test="searchoption == 'TITLE'">
+			where title like concat('%',#{keyword},'%')
+		</if>
+		<if test="searchoption == 'CONTENTTYPE'">
+			where contenttypeid like concat('%',#{keyword},'%')
+		</if>
+		<if test="searchoption == 'ADDRESS'">
+			where address like concat('%',#{keyword},'%')
+		</if>
+	</select>
+	<select id="getSearchTour" parameterType="HashMap" resultType="TourInfoVo">
+		select contentId,contentTypeId,address,title,tel from place
+		<if test="searchoption == 'CONTENTID'">
+			WHERE contentid like concat('%',#{keyword},'%')
+		</if>
+		<if test="searchoption == 'TITLE'">
+			where title like concat('%',#{keyword},'%')
+		</if>
+		<if test="searchoption == 'CONTENTTYPE'">
+			where contenttypeid like concat('%',#{keyword},'%')
+		</if>
+		<if test="searchoption == 'ADDRESS'">
+			where address like concat('%',#{keyword},'%')
+		</if>
+	</select>
+</mapper>

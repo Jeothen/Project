@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% load bootstrap_pagination %}
+{% block body %}
+<div class="container" style="margin-top:30px">
+    <hr>
+    <div class="container" style="height:{{movieheight}}rem">
+        <h2>영화</h2>
+        <div class="row mx-auto">
+            {% for movie in likemovies %}
+                <div class = 'col-md-4'>
+                    <div class="card m-3" style="width: 18rem; height:40rem;">
+                        <img src="{{movie.poster_url}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{movie.title}}</h5>
+                            {% if movie.genre.all.length >= 3 %}
+                                movie.genre.all = [movie.genre[0],movie.genre[1],movie.genre[2]]
+                            {% endif %}
+                            <p>장르 : {% for ge in movie.genre.all %}
+                                {{ge}}
+                            {% endfor %}</p>
+                            <p class="card-text">관객수 : {{movie.audience}}</p>
+                            <a href="{% url 'movies:detail' movie.pk %}">영화 상세보기</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <h2>배우</h2>
+        <div class="row mx-auto">
+            {% for actor in likeactors %}
+                <div class = 'col-md-4'>
+                    <div class="card m-3" style="width: 18rem; height:20rem;">
+                        <img src="{{actor.image_url}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{actor.name}}</h5>
+                            
+                            <a href="{% url 'movies:actordetail' actor.pk %}">배우 상세보기</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+        <hr>
+    <div class="container">
+        <h2>감독</h2>
+        <div class="row mx-auto">
+            {% for director in likedirectors %}
+                <div class = 'col-md-4'>
+                    <div class="card m-3" style="width: 18rem; height:20rem;">
+                        <img src="{{director.image_url}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{director.name}}</h5>
+                            
+                            <a href="{% url 'movies:directordetail' director.pk %}">감독 상세보기</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <hr>
+</div>
+
+
+{% endblock %}

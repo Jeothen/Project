@@ -1,0 +1,912 @@
+[
+    {
+        "pk": 1,
+        "movieCd": "20184889",
+        "movieNm": "어벤져스: 엔드게임",
+        "prdtYear": "2018", 
+        "openDt": "20190424",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "액션,SF",
+        "repNationNm": "미국",
+        "repGenreNm": "액션",
+        "directors": [
+            {
+                "peopleNm": "안소니 루소"
+            },
+            {
+                "peopleNm": "조 루소"
+            }
+        ]
+    },
+    {
+        "pk": 2,
+        "movieCd": "20181877",
+        "movieNm": "캡틴 마블",
+        "prdtYear": "2018",
+        "openDt": "20190306",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "액션,어드벤처,SF",
+        "repNationNm": "미국",
+        "repGenreNm": "액션",
+        "directors": [
+            {
+                "peopleNm": "애너 보든"
+            },
+            {
+                "peopleNm": "라이언 플렉"
+            }
+        ]
+    },
+    {
+        "pk": 3,
+        "movieCd": "20185784",
+        "movieNm": "나의 특별한 형제",
+        "prdtYear": "2018",
+        "openDt": "20190501",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "한국",
+        "genreAlt": "드라마,코미디",
+        "repNationNm": "한국",
+        "repGenreNm": "드라마",
+        "directors": [
+            {
+                "peopleNm": "육상효"
+            }
+        ]
+    },
+    {
+        "pk": 4,
+        "movieCd": "20187981",
+        "movieNm": "배심원들",
+        "prdtYear": "2019",
+        "openDt": "20190515",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉예정",
+        "nationAlt": "한국",
+        "genreAlt": "드라마",
+        "repNationNm": "한국",
+        "repGenreNm": "드라마",
+        "directors": [
+            {
+                "peopleNm": "홍승완"
+            }
+        ]
+    },
+    {
+        "pk": 5,
+        "movieCd": "20060347",
+        "movieNm": "판의 미로 - 오필리아와 세 개의 열쇠",
+        "prdtYear": "2006",
+        "openDt": "20061130",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "스페인,멕시코",
+        "genreAlt": "드라마,판타지,전쟁",
+        "repNationNm": "스페인",
+        "repGenreNm": "드라마",
+        "directors": [
+            {
+                "peopleNm": "길예르모 델 토로 "
+            }
+        ]
+    },
+    {
+        "pk": 6,
+        "movieCd": "20177478",
+        "movieNm": "어벤져스: 인피니티 워",
+        "prdtYear": "2018",
+        "openDt": "20180425",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "액션,어드벤처,판타지,SF",
+        "repNationNm": "미국",
+        "repGenreNm": "액션",
+        "directors": [
+            {
+                "peopleNm": "안소니 루소"
+            },
+            {
+                "peopleNm": "조 루소"
+            }
+        ]
+    },
+    {
+        "pk": 7,
+        "movieCd": "20148493",
+        "movieNm": "어벤져스: 에이지 오브 울트론",
+        "prdtYear": "2014",
+        "openDt": "20150423",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "액션,어드벤처,판타지,SF",
+        "repNationNm": "미국",
+        "repGenreNm": "액션",
+        "directors": [
+            {
+                "peopleNm": "조스 웨던"
+            }
+        ]
+    },
+    {
+        "pk": 8,
+        "movieCd": "20124721",
+        "movieNm": "어벤져스",
+        "prdtYear": "2012",
+        "openDt": "20120426",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "액션,SF",
+        "repNationNm": "미국",
+        "repGenreNm": "액션",
+        "directors": [
+            {
+                "peopleNm": "조스 웨던"
+            }
+        ]
+    },
+    {
+        "pk": 9,
+        "movieCd": "20180522",
+        "movieNm": "앤트맨과 와스프",
+        "prdtYear": "2018",
+        "openDt": "20180704",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "액션,어드벤처,SF",
+        "repNationNm": "미국",
+        "repGenreNm": "액션",
+        "directors": [
+            {
+                "peopleNm": "페이튼 리드"
+            }
+        ]
+    },
+    {
+        "pk": 10,
+        "movieCd": "20155702",
+        "movieNm": "앤트맨",
+        "prdtYear": "2015",
+        "openDt": "20150903",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국,영국",
+        "genreAlt": "액션,SF",
+        "repNationNm": "미국",
+        "repGenreNm": "액션",
+        "directors": [
+            {
+                "peopleNm": "페이튼 리드"
+            }
+        ]
+    },
+    {
+        "pk": 11,
+        "movieCd": "20175121",
+        "movieNm": "토르: 라그나로크",
+        "prdtYear": "2017",
+        "openDt": "20171025",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "액션,어드벤처,판타지,SF",
+        "repNationNm": "미국",
+        "repGenreNm": "액션",
+        "directors": [
+            {
+                "peopleNm": "타이카 와이티티"
+            }
+        ]
+    },
+    {
+        "pk": 12,
+        "movieCd": "20138355",
+        "movieNm": "토르: 다크 월드",
+        "prdtYear": "2013",
+        "openDt": "20131030",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "액션,어드벤처,판타지",
+        "repNationNm": "미국",
+        "repGenreNm": "액션",
+        "directors": [
+            {
+                "peopleNm": "앨런 테일러"
+            }
+        ]
+    },
+    {
+        "movieCd": "20121621",
+        "movieNm": "아이언맨 3",
+        "prdtYear": "2013",
+        "openDt": "20130425",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "액션,어드벤처,SF",
+        "repNationNm": "미국",
+        "repGenreNm": "액션",
+        "directors": [
+            {
+                "peopleNm": "쉐인 블랙"
+            }
+        ]
+    },
+    {
+        "pk": 14,
+        "movieCd": "20090933",
+        "movieNm": "아이언맨 2",
+        "prdtYear": "2010",
+        "openDt": "20100429",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "SF,액션,어드벤처",
+        "repNationNm": "미국",
+        "repGenreNm": "SF",
+        "directors": [
+            {
+                "peopleNm": "존 파브로"
+            }
+        ]
+    },
+    {
+        "pk": 15,
+        "movieCd": "20080396",
+        "movieNm": "아이언맨",
+        "prdtYear": "2008",
+        "openDt": "20080430",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "SF,드라마,액션",
+        "repNationNm": "미국",
+        "repGenreNm": "SF",
+        "directors": [
+            {
+                "peopleNm": "존 파브로"
+            }
+        ]
+    },
+    {
+        "pk": 16,
+        "movieCd": "20176442",
+        "movieNm": "자전차왕 엄복동",
+        "prdtYear": "2018",
+        "openDt": "20190227",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "한국",
+        "genreAlt": "드라마",
+        "repNationNm": "한국",
+        "repGenreNm": "드라마",
+        "directors": [
+            {
+                "peopleNm": "김유성"
+            }
+        ]
+    },
+    {
+        "pk": 17,
+        "movieCd": "20136803",
+        "movieNm": "겨울왕국",
+        "prdtYear": "2013",
+        "openDt": "20140116",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "애니메이션,어드벤처,가족,코미디,뮤지컬,판타지",
+        "repNationNm": "미국",
+        "repGenreNm": "애니메이션",
+        "directors": [
+            {
+                "peopleNm": "크리스 벅"
+            },
+            {
+                "peopleNm": "제니퍼 리"
+            }
+        ]
+    },
+    {
+        "pk": 18,
+        "movieCd": "20156841",
+        "movieNm": "신데렐라",
+        "prdtYear": "2014",
+        "openDt": "20150319",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "멜로/로맨스",
+        "repNationNm": "미국",
+        "repGenreNm": "멜로/로맨스",
+        "directors": [
+            {
+                "peopleNm": "케네스 브래너"
+            }
+        ]
+    },
+    {
+        "pk": 19,
+        "movieCd": "20183096",
+        "movieNm": "생일",
+        "prdtYear": "2018",
+        "openDt": "20190403",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "한국",
+        "genreAlt": "드라마",
+        "repNationNm": "한국",
+        "repGenreNm": "드라마",
+        "directors": [
+            {
+                "peopleNm": "이종언"
+            }
+        ]
+    },
+    {
+        "pk": 20,
+        "movieCd": "20196244",
+        "movieNm": "샤잠!",
+        "prdtYear": "2019",
+        "openDt": "20190403",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "액션",
+        "repNationNm": "미국",
+        "repGenreNm": "액션",
+        "directors": [
+            {
+                "peopleNm": "데이비드 F. 샌드버그"
+            }
+        ]
+    },
+    {
+        "pk": 21,
+        "movieCd": "20176103",
+        "movieNm": "돈",
+        "prdtYear": "2018",
+        "openDt": "20190320",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "한국",
+        "genreAlt": "범죄",
+        "repNationNm": "한국",
+        "repGenreNm": "범죄",
+        "directors": [
+            {
+                "peopleNm": "박누리"
+            }
+        ]
+    },
+    {
+        "pk": 22,
+        "movieCd": "20183773",
+        "movieNm": "장난스런 키스",
+        "prdtYear": "2018",
+        "openDt": "20190327",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "대만",
+        "genreAlt": "멜로/로맨스",
+        "repNationNm": "대만",
+        "repGenreNm": "멜로/로맨스",
+        "directors": [
+            {
+                "peopleNm": "프랭키 첸"
+            }
+        ]
+    },
+    {
+        "pk": 23,
+        "movieCd": "20196601",
+        "movieNm": "항거:유관순 이야기",
+        "prdtYear": "2018",
+        "openDt": "20190227",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "한국",
+        "genreAlt": "드라마",
+        "repNationNm": "한국",
+        "repGenreNm": "드라마",
+        "directors": [
+            {
+                "peopleNm": "조민호"
+            }
+        ]
+    },
+    {
+        "pk": 24,
+        "movieCd": "20177539",
+        "movieNm": "사바하",
+        "prdtYear": "2018",
+        "openDt": "20190220",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "한국",
+        "genreAlt": "미스터리,스릴러",
+        "repNationNm": "한국",
+        "repGenreNm": "미스터리",
+        "directors": [
+            {
+                "peopleNm": "장재현"
+            }
+        ]
+    },
+    {
+        "pk": 25,
+        "movieCd": "20185881",
+        "movieNm": "증인",
+        "prdtYear": "2018",
+        "openDt": "20190213",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "한국",
+        "genreAlt": "드라마",
+        "repNationNm": "한국",
+        "repGenreNm": "드라마",
+        "directors": [
+            {
+                "peopleNm": "이한"
+            }
+        ]
+    },
+    {
+        "pk": 26,
+        "movieCd": "20182530",
+        "movieNm": "극한직업",
+        "prdtYear": "2018",
+        "openDt": "20190123",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "한국",
+        "genreAlt": "코미디",
+        "repNationNm": "한국",
+        "repGenreNm": "코미디",
+        "directors": [
+            {
+                "peopleNm": "이병헌"
+            }
+        ]
+    },
+    {
+        "pk": 27,
+        "movieCd": "20148845",
+        "movieNm": "스물",
+        "prdtYear": "2014",
+        "openDt": "20150325",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "한국",
+        "genreAlt": "코미디,드라마",
+        "repNationNm": "한국",
+        "repGenreNm": "코미디",
+        "directors": [
+            {
+                "peopleNm": "이병헌"
+            }
+        ]
+    },
+    {
+        "pk": 28,
+        "movieCd": "20181651",
+        "movieNm": "신세계",
+        "prdtYear": "",
+        "openDt": "",
+        "typeNm": "단편",
+        "prdtStatNm": "기타",
+        "nationAlt": "한국",
+        "genreAlt": "드라마",
+        "repNationNm": "한국",
+        "repGenreNm": "드라마",
+        "directors": []
+    },
+    {
+        "pk": 29,
+        "movieCd": "20180868",
+        "movieNm": "뺑반",
+        "prdtYear": "2018",
+        "openDt": "20190130",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "한국",
+        "genreAlt": "범죄,액션",
+        "repNationNm": "한국",
+        "repGenreNm": "범죄",
+        "directors": [
+            {
+                "peopleNm": "한준희"
+            }
+        ]
+    },
+    {
+        "pk": 30,
+        "movieCd": "20186261",
+        "movieNm": "드래곤 길들이기 3",
+        "prdtYear": "2018",
+        "openDt": "20190130",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "애니메이션",
+        "repNationNm": "미국",
+        "repGenreNm": "애니메이션",
+        "directors": [
+            {
+                "peopleNm": "딘 데블로이스"
+            }
+        ]
+    },
+    {
+        "pk": 31,
+        "movieCd": "20100190",
+        "movieNm": "드래곤 길들이기",
+        "prdtYear": "2010",
+        "openDt": "20100520",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "애니메이션,코미디,어드벤처,가족",
+        "repNationNm": "미국",
+        "repGenreNm": "애니메이션",
+        "directors": [
+            {
+                "peopleNm": "딘 데블로이스"
+            }
+        ]
+    },
+    {
+        "pk": 32,
+        "movieCd": "20131248",
+        "movieNm": "드래곤 길들이기 2",
+        "prdtYear": "2014",
+        "openDt": "20140723",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "애니메이션,액션,어드벤처",
+        "repNationNm": "미국",
+        "repGenreNm": "애니메이션",
+        "directors": [
+            {
+                "peopleNm": "딘 데블로이스"
+            }
+        ]
+    },
+    {
+        "pk": 33,
+        "movieCd": "20184105",
+        "movieNm": "말모이",
+        "prdtYear": "2018",
+        "openDt": "20190109",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "한국",
+        "genreAlt": "드라마",
+        "repNationNm": "한국",
+        "repGenreNm": "드라마",
+        "directors": [
+            {
+                "peopleNm": "엄유나"
+            }
+        ]
+    },
+    {
+        "pk": 34,
+        "movieCd": "20185485",
+        "movieNm": "보헤미안 랩소디",
+        "prdtYear": "2018",
+        "openDt": "20181031",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "드라마",
+        "repNationNm": "미국",
+        "repGenreNm": "드라마",
+        "directors": [
+            {
+                "peopleNm": "브라이언 싱어"
+            }
+        ]
+    },
+    {
+        "pk": 35,
+        "movieCd": "20175547",
+        "movieNm": "스윙키즈",
+        "prdtYear": "2018",
+        "openDt": "20181219",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "한국",
+        "genreAlt": "드라마",
+        "repNationNm": "한국",
+        "repGenreNm": "드라마",
+        "directors": [
+            {
+                "peopleNm": "강형철"
+            }
+        ]
+    },
+    {
+        "pk": 36,
+        "movieCd": "20184481",
+        "movieNm": "성난황소",
+        "prdtYear": "2018",
+        "openDt": "20181122",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "한국",
+        "genreAlt": "범죄,액션",
+        "repNationNm": "한국",
+        "repGenreNm": "범죄",
+        "directors": [
+            {
+                "peopleNm": "김민호"
+            }
+        ]
+    },
+    {
+        "pk": 37,
+        "movieCd": "20177552",
+        "movieNm": "국가부도의 날",
+        "prdtYear": "2018",
+        "openDt": "20181128",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "한국",
+        "genreAlt": "드라마",
+        "repNationNm": "한국",
+        "repGenreNm": "드라마",
+        "directors": [
+            {
+                "peopleNm": "최국희"
+            }
+        ]
+    },
+    {
+        "pk": 38,
+        "movieCd": "20179230",
+        "movieNm": "도어락",
+        "prdtYear": "2018",
+        "openDt": "20181205",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "한국",
+        "genreAlt": "스릴러,드라마",
+        "repNationNm": "한국",
+        "repGenreNm": "스릴러",
+        "directors": [
+            {
+                "peopleNm": "이권"
+            }
+        ]
+    },
+    {
+        "pk": 39,
+        "movieCd": "20189843",
+        "movieNm": "호두까기 인형과 4개의 왕국",
+        "prdtYear": "2018",
+        "openDt": "20181206",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "판타지,드라마",
+        "repNationNm": "미국",
+        "repGenreNm": "판타지",
+        "directors": [
+            {
+                "peopleNm": "라세 할스트롬"
+            },
+            {
+                "peopleNm": "조 존스톤"
+            }
+        ]
+    },
+    {
+        "pk": 40,
+        "movieCd": "20177538",
+        "movieNm": "완벽한 타인",
+        "prdtYear": "2018",
+        "openDt": "20181031",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "한국",
+        "genreAlt": "드라마,코미디",
+        "repNationNm": "한국",
+        "repGenreNm": "드라마",
+        "directors": [
+            {
+                "peopleNm": "이재규"
+            }
+        ]
+    },
+    {
+        "pk": 41,
+        "movieCd": "20020222",
+        "movieNm": "해리포터와 비밀의 방",
+        "prdtYear": "2002",
+        "openDt": "20021213",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "드라마",
+        "repNationNm": "미국",
+        "repGenreNm": "드라마",
+        "directors": [
+            {
+                "peopleNm": "크리스 콜럼버스"
+            }
+        ]
+    },
+    {
+        "pk": 42,
+        "movieCd": "20010291",
+        "movieNm": "해리포터와 마법사의 돌",
+        "prdtYear": "2001",
+        "openDt": "20011213",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "가족,판타지",
+        "repNationNm": "미국",
+        "repGenreNm": "가족",
+        "directors": [
+            {
+                "peopleNm": "크리스 콜럼버스"
+            }
+        ]
+    },
+    {
+        "pk": 43,
+        "movieCd": "20040598",
+        "movieNm": "해리포터와 아즈카반의 죄수",
+        "prdtYear": "2004",
+        "openDt": "20040716",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "드라마",
+        "repNationNm": "미국",
+        "repGenreNm": "드라마",
+        "directors": [
+            {
+                "peopleNm": "알폰소 쿠아론"
+            }
+        ]
+    },
+    {
+        "pk": 44,
+        "movieCd": "20111009",
+        "movieNm": "해리포터와 죽음의 성물2",
+        "prdtYear": "2011",
+        "openDt": "20110713",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "판타지,미스터리",
+        "repNationNm": "미국",
+        "repGenreNm": "판타지",
+        "directors": [
+            {
+                "peopleNm": "데이빗 예이츠"
+            }
+        ]
+    },
+    {
+        "pk": 45,
+        "movieCd": "20101224",
+        "movieNm": "해리 포터와 죽음의 성물1",
+        "prdtYear": "2010",
+        "openDt": "20101215",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "미스터리,판타지",
+        "repNationNm": "미국",
+        "repGenreNm": "미스터리",
+        "directors": [
+            {
+                "peopleNm": "데이빗 예이츠"
+            }
+        ]
+    },
+    {
+        "pk": 46,
+        "movieCd": "20050310",
+        "movieNm": "해리포터와 불의 잔",
+        "prdtYear": "2005",
+        "openDt": "20051201",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "판타지",
+        "repNationNm": "미국",
+        "repGenreNm": "판타지",
+        "directors": [
+            {
+                "peopleNm": "마이크 뉴웰"
+            }
+        ]
+    },
+    {
+        "pk": 47,
+        "movieCd": "20090379",
+        "movieNm": "해리 포터와 혼혈 왕자",
+        "prdtYear": "2009",
+        "openDt": "20090715",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "어드벤처,액션,가족",
+        "repNationNm": "미국",
+        "repGenreNm": "어드벤처",
+        "directors": [
+            {
+                "peopleNm": "데이빗 예이츠"
+            }
+        ]
+    },
+    {
+        "pk": 48,
+        "movieCd": "20070063",
+        "movieNm": "해리 포터와 불사조 기사단",
+        "prdtYear": "2007",
+        "openDt": "20070711",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "판타지,액션,어드벤처",
+        "repNationNm": "미국",
+        "repGenreNm": "판타지",
+        "directors": [
+            {
+                "peopleNm": "데이빗 예이츠"
+            }
+        ]
+    },
+    {
+        "pk": 49,
+        "movieCd": "20176814",
+        "movieNm": "신비한 동물들과 그린델왈드의 범죄",
+        "prdtYear": "2018",
+        "openDt": "20181114",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국",
+        "genreAlt": "판타지",
+        "repNationNm": "미국",
+        "repGenreNm": "판타지",
+        "directors": [
+            {
+                "peopleNm": "데이빗 예이츠"
+            }
+        ]
+    },
+    {
+        "pk": 50,
+        "movieCd": "20162365",
+        "movieNm": "신비한 동물사전",
+        "prdtYear": "2016",
+        "openDt": "20161116",
+        "typeNm": "장편",
+        "prdtStatNm": "개봉",
+        "nationAlt": "미국,영국",
+        "genreAlt": "어드벤처,가족,판타지",
+        "repNationNm": "미국",
+        "repGenreNm": "어드벤처",
+        "directors": [
+            {
+                "peopleNm": "데이빗 예이츠"
+            }
+        ]
+    }
+]

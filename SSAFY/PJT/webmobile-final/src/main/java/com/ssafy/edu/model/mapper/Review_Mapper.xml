@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.edu.model.mapper.ReviewMapper">
+	
+	<!-- 회원 아이디로 회원 조회 -->
+	<insert id="insertReview" parameterType="ReviewVo">
+		INSERT INTO REVIEW(TITLE,CONTENT,STAR,TIME_STAMP,ID,CONTENTID)
+		VALUES(#{title},#{content},#{star},#{time_Stamp},#{id},#{contentid})
+	</insert>
+	
+	<delete id="deleteReview" parameterType="java.lang.Integer">
+		DELETE FROM REVIEW
+		WHERE NUM = #{num}
+	</delete>
+	<update id="updateReview" parameterType="ReviewVo">
+		UPDATE REVIEW
+		SET TITLE=#{title},CONTENT=#{content}
+		WHERE NUM=#{num}
+	</update>
+	<select id="getReviewByTour" parameterType="java.lang.Integer"
+	resultType="ReviewVo">
+		SELECT r.NUM,r.TITLE,r.CONTENT,r.STAR,m.name,r.TIME_STAMP,r.ID,r.CONTENTID 
+		FROM REVIEW r LEFT JOIN member m ON r.id =m.id WHERE r.contentid=#{contentid}
+
+	</select>
+	<select id="getReviewByUser" parameterType="java.lang.String"
+	resultType="ReviewVo">
+		SELECT * FROM REVIEW
+		WHERE ID = #{id}
+	</select>
+	<insert id="insertComment" parameterType="CommentVo">
+		INSERT INTO REVIEW_COMMENT(TEXT,ID,NUM,TIME_STAMP)
+		VALUES(#{text},#{id},#{num},{time_Stamp})
+	</insert>
+	<delete id="deleteComment" parameterType="java.lang.Integer">
+		DELETE FROM REVIEW_COMMENT
+		WHERE NUM = #{num}
+	</delete>
+	<select id="getCommentByTour" parameterType="java.lang.Integer"
+	resultType="CommentVo">
+		SELECT * FROM REVIEW_COMMENT
+		WHERE CONTENTID = #{contentid}
+	</select>
+	<insert id="insertDib" parameterType="java.util.HashMap">
+		insert into dib(member_id,place_contentid) VALUES (#{id},#{contentId})
+	</insert>
+	<delete id="deleteDib" parameterType="java.util.HashMap">
+		delete from dib where member_id=#{id} and place_contentid=#{contentId}
+	</delete>
+	
+	<select id="selectDib" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select count(*) as count from dib where member_id=#{id} and place_contentid=#{contentId}
+	</select>
+	
+	<select id="getDibByCId" parameterType="java.lang.String" resultType="TourInfoVo">
+	SELECT p.contentid,p.contenttypeid,p.mapx,p.mapy,p.overview,p.tel,p.address,p.title,p.zipcode,p.image,p.homepage,p.areacode,p.sigunguCode 
+	from place p RIGHT JOIN dib d ON p.contentid=d.place_contentid LEFT JOIN member m ON d.member_id = m.id WHERE m.id=#{id}
+	</select>
+	<select id="getRecentlyId" resultType="java.lang.Integer">
+	SELECT LAST_INSERT_ID()
+	</select>
+	<select id="selectImageByNum" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+	select * from review_picture where num=#{num}
+	</select>
+	
+	<insert id="insertImageByNum" parameterType="java.util.HashMap">
+	INSERT INTO review_picture(num,file,file_name,file_size) VALUES (#{num},#{file},#{file_name},#{file_size})
+	</insert>
+	<select id="getStarByCid" parameterType="java.lang.Integer" resultType="java.lang.Double">
+	select round(avg(star),1) from review where contentid=#{contentId}
+	</select>
+</mapper>

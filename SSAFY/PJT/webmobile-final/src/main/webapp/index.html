@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		           var form_data ={
+		        		   address:"대전 유성구 덕명동 124"
+						};
+					$.ajax({
+						type : "POST",
+						url : "setAddress.do",
+						data : form_data,
+						success : function(data){
+					          form_data ={
+										lat:36.35548954770124,
+										lon:127.29863827312847,
+										distance:5
+									};
+								$.ajax({
+									type : "POST",
+									url : "setLocation.do",
+									data : form_data,
+									success : function(data){
+										location.href="main.do";
+									},
+									error : function(error){
+										alert("error");
+									}
+								});
+						},
+						error : function(error){
+							alert("error");
+						}
+					});
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

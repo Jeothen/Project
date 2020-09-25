@@ -1,0 +1,54 @@
+result-view {
+  match: DetailInfo (DetailInfo){
+    from-output: GetInfo
+  }
+  message {
+    // template ("[#{value(DetailInfo.pillname)}]의 검색 결과예요.")
+    template-macro (info) {
+      param(pill) {
+        expression (DetailInfo)
+      }
+    }
+  }
+
+  render {
+    layout {
+      if (size(DetailInfo) > 1) {
+        section {
+          content {
+            for-each (DetailInfo) {
+              as (item) {
+                layout-macro (ListInfo) {
+                  param (pill) {
+                    expression (item)
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    else {
+        layout-macro (SingleInfo) {
+          param (pill) {
+            expression (DetailInfo)
+          }
+        }
+      }
+    }
+  }
+  
+  conversation-drivers {
+    conversation-driver {
+      template ("[#{value(DetailInfo.pillname)}]과(와) 먹으면 안 되는 약 알려줘")
+    }
+    conversation-driver {
+      template ("임산부가 [#{value(DetailInfo.pillname)}] 먹어도 돼?")
+    }
+    conversation-driver {
+      template ("만65세 이상이 [#{value(DetailInfo.pillname)}] 먹어도 돼?")
+    }
+  }
+  
+  
+}

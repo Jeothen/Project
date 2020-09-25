@@ -1,0 +1,15 @@
+npm install --save vue-router vue-session vue-sweetalert2
+
+npm install vuetify
+
+npm install @fortawesome/fontawesome-free -D
+
+npm install --save axios
+
+npm install @mdi/font -D
+
+npm install --save vuex
+
+npm install aos --save
+
+npm install --save moment vue-momentjs

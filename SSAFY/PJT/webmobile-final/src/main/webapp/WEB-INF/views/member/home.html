@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+</th:block>
+
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content">
+	Hello World..!! dd <br />
+	<form action="login.do" name="form1" method="get">
+		<table>
+		<tr>
+			<td>아이디</td>
+			<td><input name="id" id="id"/></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="password" name="password" id="password"/></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+				<button type="submit" id="btnLogin">로그인</button>
+			</td>
+		</tr>
+		<tr>
+			<td>${alias}</td>
+		</tr>
+	</table>
+	</form>
+	
+	<th:block th:text="${serverTime}"></th:block>
+</div>
+<div>
+	
+</div>
+</html>

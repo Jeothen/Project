@@ -1,0 +1,79 @@
+template-macro-def (old) {
+  params {
+    param (pill) {
+      type (TabooInfo)
+    }
+  }
+  content {
+    if (pill.status != 'no result') {
+      template("#{value(pill.message)}")
+    } else {
+      template("#{value(pill.name)}에 대한 약 정보가 없어요.")
+    }
+  }
+}
+
+template-macro-def (pregnant) {
+  params {
+    param (pill) {
+      type (TabooInfo)
+    }
+  }
+  content {
+    if (pill.status != 'no result') {
+      template("#{value(pill.message)}")
+    } else {
+      template("검색 결과가 없습니다.")
+    }
+  }
+}
+
+template-macro-def (combined) {
+  params {
+    param (pill) {
+      type (TabooInfo)
+    }
+  }
+  content {
+    if (pill.status != 'no result') {
+      template("#{value(pill.message)}")
+    } else {
+      template("검색 결과가 없어요.")
+    }
+  }
+}
+
+template-macro-def (combinedList) {
+  params {
+    param (pill) {
+      type (TabooInfo)
+    }
+  }
+  content {
+    if (pill.status != 'no result') {
+      template("#{value(pill.message)}")
+    } else {
+      template("검색 결과가 없어요.")
+    }
+  }
+}
+
+template-macro-def (info) {
+  params {
+    param (pill) {
+      type (DetailInfo)
+    }
+  }
+  content {
+    if (size(pill) > 1) {
+      template("다음 중 어떤 약이 궁금하신가요?")
+    } else {
+      if (pill.name == 'no result') {
+        template("#{value(pill.pillname)}에 대한 약 정보가 없어요.")
+      } else {
+        template("검색한 약의 정보예요.")
+      }
+    }
+  }
+}
+

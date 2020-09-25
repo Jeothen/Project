@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.edu.model.mapper.MemberMapper">
+	<select id="selectMemberByID" parameterType="String" resultType="MemberVO">
+		SELECT ID, PHONENUM, EMAIL, MEMBERTYPE, NAME, IMAGE FROM MEMBER 
+		WHERE ID = #{MEM_ID}
+	</select>
+	<select id="selectAllMemberID" parameterType="PagingVo" resultType="MemberVO">
+		SELECT ID,PHONENUM,EMAIL,MEMBERTYPE,NAME FROM MEMBER
+		LIMIT #{startList}, #{listSize}
+	</select>
+	<select id="checkMemberByID" parameterType="String" resultType="String">
+		SELECT ID FROM MEMBER
+		WHERE ID = #{mem_id}
+	</select>
+	<select id="getPassword" parameterType="String" resultType="String">
+		SELECT password FROM MEMBER
+		WHERE ID = #{id}
+	</select>
+	<update id="updateMemberType" parameterType="HashMap">
+		UPDATE MEMBER
+		SET MEMBERTYPE=#{membertype}
+		WHERE ID = #{id}
+	</update>
+	<insert id="insertMember" parameterType="MemberVO">
+		INSERT INTO MEMBER(id, password, phonenum, email, name)
+		VALUES(#{id}, #{password}, #{phonenum}, #{email}, #{name})
+	</insert>
+	<update id="updateMember" parameterType="MemberVO">
+		UPDATE MEMBER
+		SET PHONENUM = #{phonenum}, EMAIL = #{email}, IMAGE = #{image}
+		WHERE ID = #{id}
+	</update>
+	<delete id="deleteMember" parameterType="String">
+		DELETE FROM MEMBER
+		WHERE ID = #{mem_id}
+	</delete>
+	<select id="getMemberType" parameterType="String"
+	resultType="String">
+		SELECT MEMBERTYPE
+		FROM MEMBER
+		WHERE ID = #{mem_id}
+	</select>
+	<select id="searchMember" parameterType="java.util.HashMap" resultType="MemberVO">
+		SELECT ID,PHONENUM,EMAIL,MEMBERTYPE,NAME,IMAGE
+		FROM MEMBER
+		<if test="searchoption == 'ID'">
+			WHERE id like concat('%',#{keyword},'%')
+		</if>
+		<if test="searchoption == 'NAME'">
+			WHERE NAME LIKE CONCAT('%',#{keyword},'%')
+		</if>
+		<if test="searchoption == 'PHONENUM'">
+			where phonenum like concat('%',#{keyword},'%')
+		</if>
+		<if test="searchoption == 'EMAIL'">
+			where email like concat('%',#{keyword},'%')
+		</if>
+		LIMIT #{startList}, #{listSize}
+	</select>
+	<select id="getSearchMemberCnt" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select count(*) as listCnt
+		FROM MEMBER
+		<if test="searchoption == 'ID'">
+			WHERE id like concat('%',#{keyword},'%')
+		</if>
+		<if test="searchoption == 'NAME'">
+			WHERE NAME LIKE CONCAT('%',#{keyword},'%')
+		</if>
+		<if test="searchoption == 'PHONENUM'">
+			where phonenum like concat('%',#{keyword},'%')
+		</if>
+		<if test="searchoption == 'EMAIL'">
+			where email like concat('%',#{keyword},'%')
+		</if>
+	</select>
+	<select id="getMemberListCnt" resultType="Integer">
+		select count(*) as listCnt
+		from member
+	</select>
+	
+	<update id="updatePassword" parameterType="String">
+		UPDATE MEMBER
+		SET PASSWORD = #{password}
+		WHERE ID = #{id}
+	</update>
+	
+	<!-- 사용자 아이디 찾기 -->
+	<select id="findUserID" resultType="String">
+		SELECT id
+		FROM MEMBER
+		WHERE name = #{name} and email = #{email}
+	</select>
+	
+</mapper>

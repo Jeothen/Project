@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% load bootstrap_pagination %}
+{% block body %}
+
+<div class="container">
+    
+    {% if key == 'actor' %}
+    <div class="row mx-auto">
+        {% for actor in contacts %}
+            <div class = 'col-md-4'>
+                <div class="card m-3" style="width: 18rem; height:20rem;">
+                    <img src="{{actor.image_url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{actor.name}}</h5>
+                        
+                        <a href="{% url 'movies:actordetail' actor.pk %}">배우 상세보기</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% elif key == 'director' %}
+    <div class="row mx-auto">
+        {% for director in contacts %}
+            <div class = 'col-md-4'>
+                <div class="card m-3" style="width: 18rem; height:20rem;">
+                    <img src="{{director.image_url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{director.name}}</h5>
+                        
+                        <a href="{% url 'movies:directordetail' director.pk %}">감독 상세보기</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="row mx-auto">
+        {% for movie in contacts %}
+            <div class = 'col-md-4'>
+                <div class="card m-3" style="width: 18rem; height:40rem;">
+                    <img src="{{movie.poster_url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{movie.title}}</h5>
+                        {% if movie.genre.all.length >= 3 %}
+                            movie.genre.all = [movie.genre[0],movie.genre[1],movie.genre[2]]
+                        {% endif %}
+                        <p>장르 : {% for ge in movie.genre.all %}
+                            {{ge}}
+                        {% endfor %}</p>
+                        <p class="card-text">관객수 : {{movie.audience}}</p>
+                        <a href="{% url 'movies:detail' movie.pk %}">영화 상세보기</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <nav aria-label="Page navigation example">
+        <div class="row d-flex justify-content-center">
+            <div class="pagination">
+                <span class="step-links">
+                    {% bootstrap_paginate contacts %}
+                </span>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+{% endblock %}

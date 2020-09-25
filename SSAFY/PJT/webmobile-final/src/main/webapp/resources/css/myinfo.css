@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Myeongjo:400,700|Noto+Serif+KR:300,400,500,700|Song+Myung&display=swap');
+
+body {
+    margin: 0;
+    min-height: 800px;
+    /* border: 1px solid black; */
+}
+
+.wrapper__main {
+    width: 100%;
+    min-height: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ---------------- */
+.nav {
+    font-family: 'Quicksand';
+    min-height: 100%;
+}
+
+.header__logo {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: darkcyan;
+}
+
+li {
+    float: left;
+}
+
+li a, .header__button {
+    display: inline-block;
+    color: white;
+    text-align: right;
+    padding: 15px;
+    text-decoration: none;
+}
+
+.header__button {
+    min-width: 60px;
+    padding: 15px 10px 15px 65px;
+}
+
+li a:hover, .header__dropdown:hover {
+	text-align: right;
+}
+
+li.header__dropdown {
+    display: inline-block;
+    float: right;
+    font-size: 1.3em;
+    padding-right: 10px;
+    text-align: right;
+    padding-right: 0;
+}
+
+.header__content {
+    display: none;
+    position: absolute;
+    background-color: darkslategray;
+    opacity: 0.8;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.header__content a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    text-align: right;
+}
+
+.header__content a:hover {
+    background-color: darkgray;
+}
+
+.header__dropdown:hover .header__content {
+    display: block;
+}
+
+/* ---------------- */
+
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: darkcyan;
+    color: white;
+    font-size: 0.8em;
+    width: 100%;
+    text-align: center;
+}
+
+/* ---------------- */
+
+
+
+@media(min-width: 720px) {
+    .wrapper__main {
+        width: 65%;
+    }
+
+    /* .header__logo {
+        font-size: 1.5em;
+    } */
+}
+
+.inputForm {
+  width: 100%;
+  padding: 8px 12px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+small{
+	font-size: 12px;
+    line-height: 16px;
+    color: #6c8093;
+}
+
+p{
+	font-size: 13px;
+	color: black;
+	margin: 0;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.btn{
+  width: 45%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.submit{
+  background-color: darkcyan;
+  float: left;
+  margin-left: 10px;
+}
+.cancel{
+  background-color: #dc6565;
+	float:right;
+	margin-right: 10px;
+}
+
+.info__form{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.pass{
+	margin-bottom: 10px;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+#Password{
+	display: none;
+}
+
+#Delete{
+	display:none;
+}
+
+.btn__success{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: darkcyan;
+}
+

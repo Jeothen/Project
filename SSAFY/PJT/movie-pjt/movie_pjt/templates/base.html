@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        html, body {
+            height: 100% !important;
+        }
+        
+        body {
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        
+        #app {
+            flex: 1 0 auto !important;
+        }
+        
+        /* Vue icon Color*/
+        i.fa-vuejs {
+            color: #41b883 !important;
+        }
+        
+        
+        /* header */
+        .navbar {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+        
+        .navbar-brand {
+            font-size: 1.3rem !important;
+            text-align: center !important;
+        }
+        
+        /**/
+        
+        /* footer 색깔 지정 */
+        footer {
+            background-color: #41b883 !important;
+            color: white !important;
+            flex-shrink: 0 !important;
+        }
+        
+        footer > div.footer-copyright {
+            background-color: #36495D !important;
+            color: white !important;
+        }
+        {% block style %}
+        {% endblock %}
+    </style>
+</head>
+
+<body>
+<div id="app" class="container-fluid">
+    <!--NavBar-->
+    <form action="{% url 'movies:search' %}" method="POST">
+        <nav class="navbar navbar-light bg-white fixed-top flex-md-nowrap">
+            {% csrf_token %}
+            {% if user.is_authenticated %}
+                <h4>{{ user.username }}&nbsp&nbsp&nbsp&nbsp
+                <a href="{% url 'accounts:logout' %}">Logout</a></h4>
+                {% else %}
+                <a href="{% url 'accounts:signup' %}"><h4>Signup</a>
+                <a href="{% url 'accounts:login' %}">Signin</h4></a>
+            {% endif %}
+            <span class="navbar-brand col-md-2 pr-3" v-html="logo"></span>
+            <input class="form-control form-control-dark w-100 mr-3" type="text" placeholder="Search" aria-label="Search" name='itext'>
+            <input type="submit" value="검색">
+        </nav>
+    </form>
+    <a href="/movies">영화리스트</a>
+    <a href="/accounts">계정 목록</a>
+    <!--Sidebar & Content-->
+    <div class="row mt-5">
+        <!--Sidebar-->
+        <aside class="col-md-2 d-none d-md-block sidebar position-fixed">
+            <nav class="sidebar-sticky mt-2">
+                <ul class="nav flex-column">
+                    <li class="nav-item mt-2">
+                        <button class="btn btn-outline-success btn-block" onclick="location.href='/movies/'">영화 전체 보기</button>
+                    </li>
+                    <li class="nav-item mt-2">
+                        <button class="btn btn-outline-success btn-block" onclick="location.href='/movies/actors/'">배우 전체 보기</button>
+                    </li>
+                    <li class="nav-item mt-2">
+                        <button class="btn btn-outline-success btn-block" onclick="location.href='/movies/directors/'">감독 전체 보기</button>
+                    </li>
+                    <li class="nav-item mt-2">
+                        <button class="btn btn-outline-success btn-block"><a href="{% url 'movies:manywatching' %}">많이 본 영화</a></button>
+                    </li>
+                    <li class="nav-item mt-2">
+                        <button class="btn btn-outline-success btn-block"><a href="{% url 'movies:mypage' %}">My Page</a></button>
+                    </li>
+                </ul>
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span><h2>영화분류</h2></span>
+                </h6>
+                <ul class="nav flex-column mb-2">
+                    <div class="dropdown">
+                        <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">장르별 분류</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            {% for genre in genres %}
+                                <a class="dropdown-item" href="{% url 'movies:genremovie' genre.id %}">{{ genre.name }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          연도별 분류
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            {% for year in years %}
+                                {% if year == 2009 %}
+                                    <a class="dropdown-item" href="{% url 'movies:yearmovie' year%}">~{{ year }}</a>
+                                {% else %}
+                                    <a class="dropdown-item" href="{% url 'movies:yearmovie' year%}">{{ year }}</a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          연령별 분류
+                        </a>
+                      
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            {% for age in ages %}
+                                <a class="dropdown-item" href="{% url 'movies:agemovie' age %}">{{ age }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </ul>
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span><h2>영화추천</h2></span>
+                </h6>
+                <ul class="nav flex-column mb-2">
+                    <div class="dropdown">
+                        <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          추천 카테고리
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="{% url 'movies:notwatching' %}">아직 못 본 영화</a>
+                            <a class="dropdown-item" href="{% url 'movies:genrerecommend' %}">내가 좋아하는 장르</a>
+                            <a class="dropdown-item" href="{% url 'movies:actorrecommend' %}">관심 배우가 출연한 영화</a>
+                            <a class="dropdown-item" href="{% url 'movies:directorrecommend' %}">관심 감독이 연출한 영화</a>
+
+                        </div>
+                    </div>
+                </ul>
+            </nav>
+        </aside>
+        <!--Content-->
+    </div>
+    
+    {% block body %}
+    {% endblock %}
+</div>
+<hr> 
+    <footer class="page-footer font-small pt-4">
+        <div class="container-fluid text-center text-md-left">
+            <div class="row">
+                <div class="col-md-6 mt-md-0 mt-3">
+                    <h5 class="text-uppercase">Movie Box</h5>
+                    <p>updated 2019.05.16 by Real Blanc</p>
+                </div>
+                <hr class="clearfix w-100 d-md-none pb-3">
+                <div class="col-md-3 offset-md-3 mb-md-0 mb-3">
+                    <h5 class="text-uppercase">Links</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#app">상단으로 이동</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright text-center py-3">© 2019
+            <a href="#">SSAFY Project</a>
+        </div>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

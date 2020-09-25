@@ -1,0 +1,480 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Myeongjo:400,700|Noto+Serif+KR:300,400,500,700|Song+Myung&display=swap');
+
+body {
+    margin: 0;
+    min-height: 800px;
+    /* border: 1px solid black; */
+}
+
+.wrapper__main {
+    width: 100%;
+    min-height: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ---------------- */
+
+.nav {
+    font-family: 'Quicksand';
+    min-height: 100%;
+}
+
+.header__logo {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: darkcyan;
+}
+
+li {
+    float: left;
+}
+
+li a, .header__button {
+    display: inline-block;
+    color: white;
+    text-align: right;
+    padding: 15px;
+    text-decoration: none;
+}
+
+.header__button {
+    min-width: 60px;
+    /* padding: 15px 10px 15px 28px; */
+}
+
+li a:hover, .header__dropdown:hover {
+	text-align: right;
+}
+
+li.header__dropdown {
+    display: inline-block;
+    float: right;
+    font-size: 1.3em;
+    padding-right: 10px;
+    text-align: right;
+    padding-right: 0;
+}
+
+.header__content {
+    display: none;
+    position: absolute;
+    background-color: darkslategray;
+    opacity: 0.8;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.header__content a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    text-align: right;
+}
+
+.header__content a:hover {
+    background-color: darkgray;
+}
+
+.header__dropdown:hover .header__content {
+    display: block;
+}
+
+/* ---------------- */
+
+.footer {
+    position: relative;
+    margin-top: 15px;
+    padding: 2px;
+    background-color: darkcyan;
+    color: white;
+    font-size: 0.7em;
+    width: 100%;
+    text-align: center;
+}
+
+/* ---------------- */
+
+.mainImage__container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.mainImage__image {
+    opacity: 0.6;
+    filter: blur(0.1px);
+}
+
+.mainImage__text {
+    font-family: 'Song Myung';
+    position: absolute;
+    top: 50%;
+    left: 39%;
+    transform: translate(-30%, -50%);
+}
+
+.mainImage__mainText {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: darkslategray;
+}
+
+.mainImage__subText {
+    margin-top: 15px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: darkslategray;
+}
+
+.subText__location {
+    text-decoration-line: underline;
+}
+
+.subText__distance {
+    text-decoration-line: underline;
+}
+
+/* ---------------- */
+
+.main__showPlacesOption {
+    margin: 15px;
+    font-family: 'Song Myung';
+    font-size: 18px;
+    text-align: center;
+}
+
+.filter__input+.filter__label {
+    display: inline-block;
+    width: 130px;
+    height: 25px;
+    border: 1.5px solid darkslategray;
+    border-radius: 8px;
+    cursor: zoom-in;
+}
+
+.filter__input:checked+.filter__label {
+    background-color: darkslategray;
+    color: white;
+}
+
+.filter__input {
+    display: none;
+}
+
+input[id="allPlaces"]+label {
+    display: inline-block;
+    width: 130px;
+    height: 25px;
+    border: 1.5px solid darkslategray;
+    border-radius: 8px;
+    cursor: zoom-in;
+}
+
+input[id="allPlaces"]:checked+label {
+    background-color: darkslategray;
+    color: white;
+}
+
+input[id="allPlaces"] {
+    display: none;
+}
+
+/* ---------------- */
+
+.main__options {
+    text-align: center;
+}
+
+#showOption {
+    display: block;
+}
+
+.main__options button {
+    border-radius: 8px;
+    border: 1px solid black;
+    background: white;
+    padding: 6px;
+    margin: 5px 2px;
+    font-family: 'Song Myung';
+    font-size: 14px;
+}
+
+.main__options button:hover {
+    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.2);
+    background: darkcyan;
+    color: white;
+}
+
+.main__orderOption {
+    margin: 1vw;
+    font-family: 'Song Myung';
+    font-size: 16px;
+    text-align: center;
+}
+
+.allPlaces__text {
+    font-size: 1.2em;
+    color: darkslategray;
+    margin-right: 3px;
+}
+
+.main__rightOption {
+    margin-right: 1.3em;
+    float: right;
+}
+
+/* ---------------- */
+
+.places__place {
+    font-family: 'Song Myung';
+    width: 300px;
+    height: 150px;
+    margin: 15px auto 15px auto;
+    border: 1px solid darkslategray;
+    border-radius: 14px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.places__place:hover {
+    cursor: zoom-in;
+}
+
+.place__detail {
+    margin: 15px;
+    padding: 10px;
+    background-color: lightseagreen;
+    color: white;
+    border-radius: 10px;
+    opacity: 0.8;
+    width: 150px;
+}
+
+.places__place {
+    position: relative;
+    z-index: 0;
+}
+
+.places__place .place__image {
+    width: 300px;
+    height: 150px;
+    border-radius: 13px;
+    background-size: cover;
+    z-index: -1;
+    position: absolute;
+}
+
+.place__content1 {
+    font-family: 'Song Myung';
+    font-size: 14px;
+    padding: 15px 15px 15px 7px;
+    background-color: white;
+    opacity: 0.7;
+    min-width: 130px;
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    margin: 5px;
+    word-wrap: break-word;
+}
+
+.place__content2 {
+    font-family: 'Song Myung';
+    font-size: 14px;
+    padding: 15px 15px 15px 7px;
+    background-color: darkslategray;
+    color: white;
+    opacity: 0.7;
+    min-width: 130px;
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    margin: 5px;
+    word-wrap: break-word;
+}
+
+.places__place:hover {
+    opacity: 0.7;
+    box-shadow: 0 8px 16px 0 rgba(8, 148, 113, 0.2);
+}
+
+.place__main {
+    font-family: 'Song Myung';
+    position: relative;
+}
+
+.modal-wrapper {
+    z-index: 5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    background: white;
+    padding: 24px 16px;
+    border-radius: 12px;
+    width: 85%;
+    height: 350px;
+}
+
+.modal-title {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.close-wrapper {
+    text-align: right;
+}
+
+select {
+	font-family: 'Song Myung';
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid black;
+    padding: 6px;
+    margin: 5px 2px;
+    text-align: center;
+    text-align-last: center;
+    width: 20%;
+}
+
+select:focus {
+	outline: none;
+}
+
+option {
+    /* text-align: center; */
+    padding-left: 40px;
+}
+
+#open {
+	border-radius: 5px;
+	border: 1px solid black;
+	background: darkcyan;
+	padding: 7px;
+	color: white;
+	font-family: 'Song Myung';
+	font-size: 16px;
+	cursor: pointer;
+}
+
+#open:hover {
+	border: 1px solid white;
+	
+}
+
+.open__image {
+	width: 12px;
+	height: 13px;
+}
+
+#map {
+	width: 100%; height: 100%; position: relative; overflow: hidden;
+}
+
+
+
+@media(min-width: 720px) {
+    .wrapper__main {
+        width: 65%;
+    }
+    .mainImage__mainText {
+        margin: 0;
+        font-size: 1.7em;
+    }
+    .mainImage__subText {
+        font-size: 2.3em;
+    }
+    .main__showPlacesOption {
+        font-size: 32px;
+    }
+    input[id="allPlaces"]+label {
+        display: inline-block;
+        width: 240px;
+        height: 50px;
+        border: 3px solid darkslategray;
+        border-radius: 16px;
+        cursor: zoom-in;
+    }
+    .places__place {
+        font-family: 'Song Myung';
+        width: 600px;
+        height: 380px;
+        margin: 15px auto 15px auto;
+        border: 2px solid darkslategray;
+        border-radius: 14px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .places__place .place__image {
+        width: 100%;
+        height: 100%;
+        border-radius: 11px;
+    }
+    .place__content1 {
+    	margin: 18px;
+        padding: 18px;
+        font-size: 24px;
+    }
+    .place__content2 {
+    margin: 18px;
+        padding: 18px;
+        font-size: 24px;
+    }
+    
+    #open {
+		border-radius: 5px;
+		border: 1px solid black;
+		background: darkcyan;
+		padding: 7px 20px;
+		color: white;
+		margin: 15px;
+		font-family: 'Song Myung';
+		font-size: 25px;
+	}
+	.open__image {
+		width: 18px;
+		height: 20px;
+	}
+	.main__options button {
+	    padding: 10px;
+	    margin: 8px 4px;
+	    font-size: 18px;
+	}
+	
+	.main__options select {
+		padding: 10px 5px;
+		margin: 8px 4px;
+		font-size: 18px;
+	}
+	.modal {
+		width: 65%;
+	    height: 80%;
+	}
+	#map {
+	width: 100%; height: 100%;
+	}
+	
+}

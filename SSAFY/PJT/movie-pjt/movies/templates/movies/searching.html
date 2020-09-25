@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {% for item in items %}
+        {{ item.link }} <hr> <!-- item.link에서  code= 뒤에 있는 숫자 가져오기 -->
+        {{item.title}} : <img src = "{{item.image}}"><br>
+    {% endfor %}
+</body>
+</html>

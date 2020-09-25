@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class='container' style='margin-top:10px; margin-right:100px'>
+    <div class='row'>
+        <div style='display: inline; width:400px; margin-right:30px; margin-left:30px'>
+            
+            <!--<p>누적 관객수 : {{movie.audience}}</p>-->
+            <p><img src="{{actor.image_url}}" style='height:400px; width:400px;'></p>
+        </div>
+        <div style='display: inline; width:650px'>
+            
+            <h4><b>
+            <p><b><h4>{{actor.name}}</h4></b></p>
+            <hr>
+            <h5>출연영화</h5>
+            {% for movie in actor.actormovies.all %}
+                <p><a href="{% url 'movies:detail' movie.id %}">{{movie.title}}</a></p>
+            {% endfor %}
+        </div>
+    </div>
+    <hr>    
+    {% if user in actor.likeactor_users.all %}
+        <a href="{% url 'movies:likeactor' actor.pk %}">
+        좋아요 취소</a>
+    {% else %}
+        <a href="{% url 'movies:likeactor' actor.pk %}">
+        좋아요</a>
+    {% endif %}
+    {{actor.likeactor_count}}명
+
+</div>
+{% endblock %}
