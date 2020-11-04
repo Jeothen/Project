@@ -59,11 +59,7 @@
 
 
 
-### Deep Learning
 
-
-
-![Deep-Learning](./Images/Deep-Learning.png)
 
 
 
